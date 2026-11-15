@@ -1,33 +1,33 @@
 {
-   "action": {
-      "default_icon": {
-         "128": "icons/icon128.png",
-         "16": "icons/icon16.png",
-         "32": "icons/icon32.png",
-         "48": "icons/icon48.png"
-      },
-      "default_title": "Abrir o Estúdio do Extrator de Sites"
-   },
-   "background": {
-      "service_worker": "src/background.js",
-      "type": "module"
-   },
-   "content_security_policy": {
-      "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
-   },
-   "description": "Extensão open source que salva uma cópia de um site no computador, com animações, 3D e fontes funcionando offline.",
-   "homepage_url": "https://github.com/parrelladev/extrator-de-sites",
-   "host_permissions": [ "<all_urls>" ],
-   "icons": {
-      "128": "icons/icon128.png",
+  "manifest_version": 3,
+  "name": "Extrator de Sites",
+  "version": "1.0.0",
+  "description": "Extensão open source que salva uma cópia de um site no computador, com animações, 3D e fontes funcionando offline.",
+  "author": "parrelladev",
+  "homepage_url": "https://github.com/parrelladev/extrator-de-sites",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Abrir o Estúdio do Extrator de Sites",
+    "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
-      "48": "icons/icon48.png"
-   },
-   "author": "parrelladev",
-   "manifest_version": 3,
-   "minimum_chrome_version": "116",
-   "name": "Extrator de Sites",
-   "permissions": [ "scripting", "tabs", "storage", "downloads" ],
-   "version": "1.0.0"
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "permissions": ["scripting", "tabs", "storage", "downloads"],
+  "host_permissions": ["<all_urls>"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
+  }
 }

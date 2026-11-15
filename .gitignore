@@ -9,3 +9,16 @@ Thumbs.db
 *.crx
 *.pem
 *.zip
+
+# Registros de ferramentas de IA usadas no desenvolvimento.
+# Contêm identificadores de conta e histórico de sessão: não publique.
+agent-session.jsonl
+build-activity.log
+craft.json
+feed.json
+usage.json
+inbox/
+capture/
+checks/
+reference/
+investigation.cany/

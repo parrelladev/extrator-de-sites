@@ -1,7 +1,5 @@
 /* Utilitarios comuns. */
 
-export const TEXT_KINDS = new Set(['document', 'css', 'js', 'json', 'svg', 'text']);
-
 export function hash8(str) {
   // FNV-1a 32 bits — curto, deterministico, suficiente para desambiguar nomes.
   let h = 0x811c9dc5;
@@ -51,7 +49,7 @@ export function ehRedePrivada(hostname) {
 const SUFIXOS_2 = /^(com|net|org|gov|edu|co|ac|art|blog|eco|app|dev|ind|inf|adv|eng|med|nom|tv|ltd|plc|or|ne|go)$/;
 
 /** O "site" de um host (domínio registrável, por aproximação). */
-export function siteDe(hostname) {
+function siteDe(hostname) {
   const h = String(hostname || '').toLowerCase().replace(/\.$/, '');
   if (/^[\d.]+$/.test(h) || h.includes(':')) return h;
   const p = h.split('.');
@@ -123,11 +121,6 @@ export function relativeSpecifier(fromFile, toFile) {
   return r.startsWith('.') ? r : './' + r;
 }
 
-export function dirOf(path) {
-  const i = path.lastIndexOf('/');
-  return i < 0 ? '' : path.slice(0, i);
-}
-
 const MIME_KIND = [
   [/^text\/html|application\/xhtml/i, 'document'],
   [/^text\/css/i, 'css'],
@@ -188,7 +181,7 @@ export function extForKind(kind) {
   }
 }
 
-export function charsetOf(contentType) {
+function charsetOf(contentType) {
   const m = /charset=["']?([\w-]+)/i.exec(contentType || '');
   return m ? m[1].toLowerCase() : null;
 }
@@ -222,13 +215,6 @@ export function formatBytes(n) {
   return (n / 1073741824).toFixed(2) + ' GB';
 }
 
-export function b64ToU8(b64) {
-  const bin = atob(b64);
-  const out = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
-  return out;
-}
-
 /** Executa `worker` sobre `items` com no maximo `limit` em paralelo. */
 export async function pool(items, limit, worker) {
   const it = items[Symbol.iterator]();
@@ -245,7 +231,7 @@ export async function pool(items, limit, worker) {
   await Promise.all(runners);
 }
 
-export const ANALYTICS_PATTERNS = [
+const ANALYTICS_PATTERNS = [
   /google-analytics\.com/i, /googletagmanager\.com/i, /doubleclick\.net/i,
   /googlesyndication\.com/i, /googleads/i, /connect\.facebook\.net/i,
   /facebook\.com\/tr/i, /hotjar\.com/i, /segment\.(io|com)/i, /mixpanel\.com/i,

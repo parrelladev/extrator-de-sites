@@ -11,9 +11,9 @@
  * de cena e dá lugar ao progresso.
  */
 
-import { runCapture, DEFAULTS } from '../core/capture.js';
-import { DirectoryWriter, ZipWriterSink, supportsDirectoryPicker } from '../core/writer.js';
-import { formatBytes } from '../core/util.js';
+import { runCapture, DEFAULTS } from '../capture/index.js';
+import { DirectoryWriter, ZipWriterSink, supportsDirectoryPicker } from '../capture/writer.js';
+import { formatBytes } from '../shared/util.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -466,8 +466,8 @@ function mostrarResultado(r, modo) {
         ${d.hero ? '<span>hero clonado</span>' : ''}
         ${(d.bibliotecas || []).length ? `<span>${escapar(d.bibliotecas.slice(0, 3).join(' · '))}</span>` : ''}
       </div>
-      <p style="margin-top:14px">Em <code>design-system/</code> vão a mesma leitura em
-         folha neutra, <code>tokens.css</code> pronto para colar no seu projeto e
+      <p style="margin-top:14px">Em <code>design-system/</code> vão
+         <code>tokens.css</code>, pronto para colar no seu projeto, e
          <code>tokens.json</code> com os dados completos.</p>
     </div>`);
   }

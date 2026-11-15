@@ -7,10 +7,10 @@
  * nem dispara requisicao.
  */
 
-import { safeUrl, relativePath, stripHash, dirOf } from './util.js';
+import { safeUrl, relativePath, stripHash } from '../shared/util.js';
 import { discoverCssUrls, rewriteCss } from './css.js';
 import { rewriteQuotedUrls } from './js.js';
-import { OFFLINE_DIR } from './urlmap.js';
+import { OFFLINE_DIR } from '../capture/urlmap.js';
 
 const URL_ATTRS = [
   ['src', '*'], ['href', '*'], ['poster', 'video'], ['data', 'object'],
@@ -304,13 +304,3 @@ export function rewriteHtml({ html, docUrl, docLocal, lookup, opts = {} }) {
 
   return doctype + doc.documentElement.outerHTML;
 }
-
-/** Metadados uteis para o relatorio. */
-export function titleOf(htmlText) {
-  try {
-    const doc = new DOMParser().parseFromString(htmlText, 'text/html');
-    return (doc.title || '').trim();
-  } catch { return ''; }
-}
-
-export { dirOf };

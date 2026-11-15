@@ -1,10 +1,8 @@
 /*
- * design-live.js — a biblioteca viva.
+ * page.js — a pagina do design system: uma biblioteca viva.
  *
- * design-page.js documenta o site com a nossa linguagem visual: uma pagina
- * neutra, legivel em qualquer captura, boa para conferir numeros. Este arquivo
- * faz o oposto e complementar: monta o design system COM O CSS DO PROPRIO SITE,
- * reaproveitando as classes, os keyframes, as transicoes e os fragmentos de
+ * Em vez de documentar o site com uma linguagem visual nossa, este arquivo
+ * monta o design system COM O CSS DO PROPRIO SITE, reaproveitando as classes, os keyframes, as transicoes e os fragmentos de
  * HTML que a pagina original usa.
  *
  * Regras que a geracao respeita, e o porque de cada uma:
@@ -261,7 +259,7 @@ function fatiarEmPartes(texto, tamanhos) {
   return saida;
 }
 
-export function adaptarHero(html, slots) {
+function adaptarHero(html, slots) {
   let doc;
   try { doc = new DOMParser().parseFromString(`<div id="xtr-raiz">${html}</div>`, 'text/html'); }
   catch { return html; }
@@ -1087,8 +1085,7 @@ ${secoes.join('\n')}
   Extraído de <a href="${esc(origem)}">${esc(origem)}</a> em ${esc(geradoEm)}.
   Tema ${esc(ds.resumo.tema)}, contraste base ${esc(ds.resumo.contrastePrincipal)}:1.
   Os tokens em formato de arquivo estão em <a href="design-system/tokens.css">design-system/tokens.css</a>
-  e <a href="design-system/tokens.json">tokens.json</a>; a versão em folha neutra,
-  em <a href="design-system/index.html">design-system/index.html</a>.
+  e <a href="design-system/tokens.json">tokens.json</a>.
 </div>
 ${scripts}
 <script>${ESPIA}</script>

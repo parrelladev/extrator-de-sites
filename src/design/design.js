@@ -25,7 +25,7 @@ export function hexParaRgb(hex) {
   return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
 }
 
-export function luminancia(hex) {
+function luminancia(hex) {
   const c = hexParaRgb(hex);
   if (!c) return 0;
   const f = [c.r, c.g, c.b].map((v) => {
@@ -40,7 +40,7 @@ export function contraste(a, b) {
   return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
 }
 
-export function paraHsl(hex) {
+function paraHsl(hex) {
   const c = hexParaRgb(hex);
   if (!c) return { h: 0, s: 0, l: 0 };
   const r = c.r / 255, g = c.g / 255, b = c.b / 255;
@@ -494,8 +494,7 @@ export function extrairFontesLocais(arquivosCss, resolver) {
         const fmt = (u[4] || '').toLowerCase() ||
           (/\.woff2$/i.test(local) ? 'woff2' : /\.woff$/i.test(local) ? 'woff' :
            /\.otf$/i.test(local) ? 'opentype' : 'truetype');
-        // Caminho local puro: a folha neutra mora em design-system/ e a viva na
-        // raiz, entao o prefixo e decidido por quem monta a pagina.
+        // Caminho local puro: o prefixo e decidido por quem monta a pagina.
         caminhos.push({ caminho: local, formato: fmt });
       }
       if (!caminhos.length) continue;
