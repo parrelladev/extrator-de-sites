@@ -1,0 +1,11 @@
+# Arquivos do sistema e do editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Pacotes gerados ao compactar a extensão.
+# O .pem é a chave privada da extensão: nunca publique.
+*.crx
+*.pem
+*.zip

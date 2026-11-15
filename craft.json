@@ -1,0 +1,103 @@
+{
+  "version": 5,
+  "name": "extrator-de-sites",
+  "request": "Deixe esse repositório com cara que projeto pessoal. Remova tudo que faz menção a isso ser um serviço.",
+  "target": {
+    "kind": "none"
+  },
+  "stack": "Rust + egui (eframe)",
+  "status": "ready",
+  "note": "Ready: all 2 checks pass.",
+  "created_ms": 1794712560372,
+  "updated_ms": 1794713880692,
+  "checks": [
+    {
+      "round": 1,
+      "check": "build",
+      "passed": true,
+      "similarity": null,
+      "note": "Nothing was built: Craft Anything doesn't know how to build this kind of project.",
+      "artifacts": [],
+      "at_ms": 1794712739149
+    },
+    {
+      "round": 1,
+      "check": "own-tests",
+      "passed": true,
+      "similarity": null,
+      "note": "No tests ran: Craft Anything doesn't know how to test this kind of project.",
+      "artifacts": [],
+      "at_ms": 1794712739149
+    },
+    {
+      "round": 2,
+      "check": "build",
+      "passed": true,
+      "similarity": null,
+      "note": "Nothing was built: Craft Anything doesn't know how to build this kind of project.",
+      "artifacts": [],
+      "at_ms": 1794712850209
+    },
+    {
+      "round": 2,
+      "check": "own-tests",
+      "passed": true,
+      "similarity": null,
+      "note": "No tests ran: Craft Anything doesn't know how to test this kind of project.",
+      "artifacts": [],
+      "at_ms": 1794712850209
+    },
+    {
+      "round": 3,
+      "check": "build",
+      "passed": true,
+      "similarity": null,
+      "note": "Nothing was built: Craft Anything doesn't know how to build this kind of project.",
+      "artifacts": [],
+      "at_ms": 1794713380206
+    },
+    {
+      "round": 3,
+      "check": "own-tests",
+      "passed": true,
+      "similarity": null,
+      "note": "No tests ran: Craft Anything doesn't know how to test this kind of project.",
+      "artifacts": [],
+      "at_ms": 1794713380207
+    },
+    {
+      "round": 4,
+      "check": "build",
+      "passed": true,
+      "similarity": null,
+      "note": "Nothing was built: Craft Anything doesn't know how to build this kind of project.",
+      "artifacts": [],
+      "at_ms": 1794713380206
+    },
+    {
+      "round": 4,
+      "check": "own-tests",
+      "passed": true,
+      "similarity": null,
+      "note": "No tests ran: Craft Anything doesn't know how to test this kind of project.",
+      "artifacts": [],
+      "at_ms": 1794713380207
+    }
+  ],
+  "agent_session": "2fa84d6a-501d-4737-8ab4-d169911e2445",
+  "agent_session_by": "claude-code",
+  "agent_session_deep": true,
+  "capture_deep": true,
+  "allowed_actions": [],
+  "last_reply": "Não mudei nada desta vez: busquei no código e na documentação e não sobrou nenhuma menção ao nome antigo, à versão 1.4.2, à pasta da loja, a login, assinatura, cota grátis ou servidor de contas. Os poucos \"login\" que restam falam dos sites que você copia. Os vestígios estão só no histórico do build e na ficha do projeto, que são registros do próprio Craft Anything, e eu não tenho permissão para apagar nem editar esses arquivos. Para que nada disso apareça no GitHub, publique só README.md, LICENSE, .gitignore, manifest.json e as pastas icons e src, por exemplo copiando esses itens para uma pasta nova antes de enviar; se preferir, libere a categoria \"system\" nas aprovações deste projeto e eu coloco esses registros na lista de arquivos que o Git ignora.",
+  "asset_budget_usd": 5.0,
+  "generate_assets": false,
+  "app_in_root": true,
+  "start_files": [
+    "README.md",
+    "_metadata",
+    "icons",
+    "manifest.json",
+    "src"
+  ]
+}
