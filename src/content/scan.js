@@ -124,11 +124,6 @@
       }
     } catch (e) {}
 
-    // fontes realmente usadas
-    try {
-      document.fonts.forEach(function (f) { if (f && f.family) { /* src nao exposto; ja vem do CSS */ } });
-    } catch (e) {}
-
     return { found: Array.from(found), links: Array.from(links) };
   }
 

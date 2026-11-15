@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   hash8, stripHash, ehRedePrivada, mesmoSite, safeUrl, sanitizeSegment, extOf,
-  relativePath, relativeSpecifier, dirOf, kindOf, decodeText, encodeText,
+  relativePath, relativeSpecifier, kindOf, decodeText, encodeText,
   formatBytes, pool, isAnalytics
 } from '../src/shared/util.js';
 
@@ -44,11 +44,9 @@ test('sanitizeSegment devolve um nome de arquivo válido no Windows', () => {
   assert.notEqual(sanitizeSegment('..'), '..');
 });
 
-test('extOf, dirOf', () => {
+test('extOf', () => {
   assert.equal(extOf('foto.JPG'), '.jpg');
   assert.equal(extOf('semextensao'), '');
-  assert.equal(dirOf('a/b/c.css'), 'a/b');
-  assert.equal(dirOf('c.css'), '');
 });
 
 test('relativePath e relativeSpecifier', () => {

@@ -15,7 +15,7 @@
 import { hash8, sanitizeSegment, extOf, extForKind, extForContentType, stripHash } from '../shared/util.js';
 
 export const OFFLINE_DIR = '__offline';
-export const EXT_DIR = '_ext';
+const EXT_DIR = '_ext';
 
 // O que a propria captura grava na raiz. Nenhum arquivo do site pode ocupar
 // esses nomes: um site que servisse /ABRIR%20SITE.cmd trocaria o atalho que o
