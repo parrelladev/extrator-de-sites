@@ -24,6 +24,7 @@ const NOMES_RESERVADOS = [
   OFFLINE_DIR, 'abrir site.command', 'abrir site.cmd', 'leia-me.txt',
   'design-system.html', 'design-system'
 ];
+const PASTAS_RESERVADAS = new Set([OFFLINE_DIR, 'design-system']);
 
 /*
  * Extensoes que o sistema executa com dois cliques (ou que o servidor local
@@ -137,6 +138,10 @@ export class UrlMap {
 
     if (isExternal) {
       dirs = [EXT_DIR, sanitizeSegment(u.host), ...dirs];
+    } else if (dirs.length && PASTAS_RESERVADAS.has(dirs[0].toLowerCase())) {
+      // Um site com /design-system/... ou /__offline/... gravaria por cima do
+      // que a captura gera nessas pastas.
+      dirs[0] += '~site';
     }
 
     // --- extensao ---

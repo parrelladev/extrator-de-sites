@@ -198,7 +198,9 @@ export function discoverAssetsInJs(code, scriptUrl, pageUrl, limit = 1500) {
 
 /* --- 3. Reescrita de URLs absolutas em strings (HTML inline / JSON) ----- */
 
-const QUOTED_URL_RE = /(["'`])((?:https?:)?\\?\/\\?\/[^"'`\s\\]{4,400}|\\?\/[^"'`\s]{2,400})\1/g;
+// O "\/" dentro do primeiro ramo cobre URLs completas com barras escapadas de
+// JSON; qualquer outra barra invertida continua encerrando o casamento.
+const QUOTED_URL_RE = /(["'`])((?:https?:)?\\?\/\\?\/(?:[^"'`\s\\]|\\\/){4,400}|\\?\/[^"'`\s]{2,400})\1/g;
 
 /**
  * Troca URLs absolutas capturadas por caminhos locais dentro de strings.
