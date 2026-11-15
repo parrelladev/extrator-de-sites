@@ -16,7 +16,7 @@
  *     Isso resolve inclusive caminhos que nao existem como string no arquivo.
  */
 
-import { safeUrl, relativeSpecifier, stripHash, extOf } from './util.js';
+import { safeUrl, relativeSpecifier, stripHash, extOf } from '../shared/util.js';
 
 /* --- 1. Specifiers de modulo ------------------------------------------- */
 

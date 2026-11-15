@@ -7,10 +7,10 @@
  * nem dispara requisicao.
  */
 
-import { safeUrl, relativePath, stripHash, dirOf } from './util.js';
+import { safeUrl, relativePath, stripHash, dirOf } from '../shared/util.js';
 import { discoverCssUrls, rewriteCss } from './css.js';
 import { rewriteQuotedUrls } from './js.js';
-import { OFFLINE_DIR } from './urlmap.js';
+import { OFFLINE_DIR } from '../capture/urlmap.js';
 
 const URL_ATTRS = [
   ['src', '*'], ['href', '*'], ['poster', 'video'], ['data', 'object'],

@@ -1,5 +1,5 @@
 /*
- * design-live.js — a biblioteca viva.
+ * page-live.js — a biblioteca viva.
  *
  * design-page.js documenta o site com a nossa linguagem visual: uma pagina
  * neutra, legivel em qualquer captura, boa para conferir numeros. Este arquivo

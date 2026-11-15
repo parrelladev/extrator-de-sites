@@ -12,7 +12,7 @@
  * dentro de CSS e de ES modules continuam validos sem reescrita nenhuma.
  */
 
-import { hash8, sanitizeSegment, extOf, extForKind, extForContentType, stripHash } from './util.js';
+import { hash8, sanitizeSegment, extOf, extForKind, extForContentType, stripHash } from '../shared/util.js';
 
 export const OFFLINE_DIR = '__offline';
 export const EXT_DIR = '_ext';

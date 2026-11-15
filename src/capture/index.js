@@ -14,18 +14,18 @@
 import {
   pool, kindOf, decodeText, encodeText, stripHash, safeUrl,
   isAnalytics, relativePath, formatBytes
-} from './util.js';
+} from '../shared/util.js';
 import { UrlMap, OFFLINE_DIR } from './urlmap.js';
 import { Fetcher } from './fetcher.js';
-import { discoverCssUrls, rewriteCss } from './css.js';
-import { discoverHtmlUrls, rewriteHtml } from './html.js';
-import { rewriteModuleSpecifiers, discoverAssetsInJs, rewriteQuotedUrls } from './js.js';
+import { discoverCssUrls, rewriteCss } from '../rewrite/css.js';
+import { discoverHtmlUrls, rewriteHtml } from '../rewrite/html.js';
+import { rewriteModuleSpecifiers, discoverAssetsInJs, rewriteQuotedUrls } from '../rewrite/js.js';
 import {
   mesclarColetas, analisarCssBaixado, construirDesignSystem,
   gerarTokensCss, extrairFontesLocais
-} from './design.js';
-import { gerarPaginaDesign } from './design-page.js';
-import { gerarPaginaViva } from './design-live.js';
+} from '../design/design.js';
+import { gerarPaginaDesign } from '../design/page-neutral.js';
+import { gerarPaginaViva } from '../design/page-live.js';
 
 export const DEFAULTS = {
   depth: 0,

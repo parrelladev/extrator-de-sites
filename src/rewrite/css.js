@@ -6,7 +6,7 @@
  * mas reescrevemos tudo mesmo assim para normalizar query strings e CDNs.
  */
 
-import { safeUrl, relativePath, stripHash } from './util.js';
+import { safeUrl, relativePath, stripHash } from '../shared/util.js';
 
 const URL_RE = /url\(\s*(?:(["'])((?:\\.|(?!\1)[^\\])*)\1|([^)"'\s][^)]*?))\s*\)/gi;
 const IMPORT_RE = /@import\s+(?:url\(\s*(["']?)([^)"']+)\1\s*\)|(["'])([^"']+)\3)/gi;

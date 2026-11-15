@@ -11,9 +11,9 @@
  * de cena e dá lugar ao progresso.
  */
 
-import { runCapture, DEFAULTS } from '../core/capture.js';
-import { DirectoryWriter, ZipWriterSink, supportsDirectoryPicker } from '../core/writer.js';
-import { formatBytes } from '../core/util.js';
+import { runCapture, DEFAULTS } from '../capture/index.js';
+import { DirectoryWriter, ZipWriterSink, supportsDirectoryPicker } from '../capture/writer.js';
+import { formatBytes } from '../shared/util.js';
 
 const $ = (id) => document.getElementById(id);
 

@@ -7,7 +7,7 @@
  * falharia em metade dos CDNs.
  */
 
-import { ehRedePrivada, mesmoSite } from './util.js';
+import { ehRedePrivada, mesmoSite } from '../shared/util.js';
 
 const DEFAULT_TIMEOUT = 45000;
 
