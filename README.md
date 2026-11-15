@@ -173,20 +173,32 @@ O atalho liga um pequeno "servidor local", um programa que entrega o site ao nav
 extrator-de-sites/
 ├── manifest.json          Ficha técnica da extensão (nome, versão, permissões)
 ├── icons/                 Ícones 16, 32, 48 e 128 px
+├── tests/                 Testes automáticos (rodam com Node, sem instalar nada)
 └── src/
     ├── background.js      "Bastidor": abre o Estúdio e liga/desliga os coletores
     ├── studio/            A tela do Estúdio (HTML, CSS e lógica da interface)
-    ├── content/
-    │   ├── hooks.js       Coletor que registra cada arquivo que a página carrega
-    │   └── bridge.js      Ponte entre a página e o Estúdio
-    ├── core/              O motor da captura
-    │   ├── capture.js     Comanda a captura de ponta a ponta
-    │   ├── fetcher.js     Baixa os arquivos
-    │   ├── html.js / css.js / js.js / urlmap.js   Ajustam os endereços nos arquivos
-    │   ├── design*.js     Extraem o design system
-    │   ├── writer.js      Grava em pasta ou em .zip
-    │   ├── zip.js         Monta o .zip
-    │   └── util.js        Funções de apoio
+    ├── content/           O que roda dentro da página capturada
+    │   ├── hooks.js             Registra cada arquivo que a página carrega
+    │   ├── scan.js              Varre a página atrás de endereços de arquivos
+    │   ├── scroll.js            Rola a página para forçar o carregamento
+    │   ├── design-tokens.js     Lê cores, fontes e espaçamentos em uso
+    │   ├── design-patterns.js   Copia trechos reais (hero, botões, cartões)
+    │   └── bridge.js            Ponte: recebe os comandos do Estúdio
+    ├── capture/           O motor da captura, uma fase por arquivo
+    │   ├── index.js             Comanda a captura de ponta a ponta
+    │   ├── options.js           As opções e seus valores padrão
+    │   ├── tab.js               Conversa com a aba do site
+    │   ├── visit.js             Fase 1: visita as páginas
+    │   ├── download.js          Fase 2: baixa os arquivos
+    │   ├── assemble.js          Fase 3: ajusta os endereços nos arquivos
+    │   ├── package.js           Fase 4: camada offline, servidor e atalho
+    │   ├── design-system.js     Acrescenta o design system à cópia
+    │   ├── readme.js            O LEIA-ME.txt de cada cópia
+    │   ├── fetcher.js / urlmap.js   Baixam e dão nome local a cada arquivo
+    │   └── writer.js / zip.js       Gravam em pasta ou em .zip
+    ├── rewrite/           html.js, css.js, js.js: trocam endereços por caminhos locais
+    ├── design/            design.js (análise) e page.js (a página gerada)
+    ├── shared/util.js     Funções de apoio
     └── templates/         Arquivos copiados para dentro de cada site baixado
         ├── abrir-site.cmd.tpl       Atalho do Windows
         ├── abrir-site.command.tpl   Atalho do Mac/Linux
@@ -200,7 +212,7 @@ Os nomes e os comentários desses arquivos deixam claro o papel de cada um.
 ## 11. Como funciona por dentro
 
 - **Quem faz o trabalho pesado é a página do Estúdio**, não o "bastidor" (`background.js`). O Chrome pode desligar o bastidor no meio de uma tarefa longa; a página do Estúdio fica viva a captura inteira.
-- **Os coletores ficam ligados só durante a captura.** O Estúdio pede ao bastidor para "armar" os coletores (`hooks.js` e `bridge.js`) no início e "desarmar" no fim. Se a aba do Estúdio fechar, ou se o Chrome reiniciar, eles são desligados.
+- **Os coletores ficam ligados só durante a captura.** O Estúdio pede ao bastidor para "armar" os coletores (os arquivos de `src/content/`) no início e "desarmar" no fim. Se a aba do Estúdio fechar, ou se o Chrome reiniciar, eles são desligados.
 - **Só a própria extensão pode dar ordens ao bastidor.** Mensagens vindas de páginas de terceiros são recusadas.
 - **Limites do coletor:** guarda no máximo 2 MB por resposta e 24 MB no total.
 - **A cópia guarda o HTML original**, não a tela já desenhada. Assim as animações começam do zero, como no site real. Uma camada (`runtime.js`) redireciona cada endereço para o arquivo baixado.
@@ -210,10 +222,11 @@ Os nomes e os comentários desses arquivos deixam claro o papel de cada um.
 Contribuições são bem-vindas.
 
 1. Faça um *fork* do repositório e crie um *branch* para a sua mudança.
-2. Carregue a extensão pela pasta (seção 3) e teste a captura em alguns sites.
-3. Abra um *pull request* explicando o que mudou e por quê.
+2. Rode os testes com `npm test` (precisa do Node 22 ou mais novo; não instala nada).
+3. Carregue a extensão pela pasta (seção 3) e teste a captura em alguns sites. Os testes não cobrem o que depende do navegador.
+4. Abra um *pull request* explicando o que mudou e por quê.
 
-Não há etapa de build nem dependências: é só HTML, CSS e JavaScript.
+Não há etapa de build nem dependências: é só HTML, CSS e JavaScript. Os arquivos de `src/content/` não são módulos ES (o Chrome não permite); eles se enxergam pelo objeto `window.__XTR__` e a ordem de carga está em `background.js`.
 
 ## 13. Licença
 

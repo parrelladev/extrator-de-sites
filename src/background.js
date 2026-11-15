@@ -32,14 +32,25 @@ chrome.runtime.onInstalled.addListener((d) => {
 const IDS = ['xtr-hooks', 'xtr-bridge'];
 const K_ESTUDIOS = 'bg.estudiosArmados';
 
+// A ordem importa: cada arquivo usa o que os anteriores publicaram em
+// window.__XTR__, e bridge.js (que responde ao Estudio) entra por ultimo.
+const ARQUIVOS_MAIN = ['src/content/hooks.js'];
+const ARQUIVOS_ISOLATED = [
+  'src/content/scan.js',
+  'src/content/scroll.js',
+  'src/content/design-tokens.js',
+  'src/content/design-patterns.js',
+  'src/content/bridge.js'
+];
+
 const SCRIPTS = [
   {
-    id: 'xtr-hooks', js: ['src/content/hooks.js'], world: 'MAIN',
+    id: 'xtr-hooks', js: ARQUIVOS_MAIN, world: 'MAIN',
     matches: ['http://*/*', 'https://*/*'], runAt: 'document_start',
     allFrames: true, persistAcrossSessions: false
   },
   {
-    id: 'xtr-bridge', js: ['src/content/bridge.js'], world: 'ISOLATED',
+    id: 'xtr-bridge', js: ARQUIVOS_ISOLATED, world: 'ISOLATED',
     matches: ['http://*/*', 'https://*/*'], runAt: 'document_start',
     allFrames: true, persistAcrossSessions: false
   }
@@ -99,13 +110,13 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         if (!Number.isInteger(msg.tabId)) return sendResponse({ ok: false, error: 'aba invalida' });
         await chrome.scripting.executeScript({
           target: { tabId: msg.tabId, allFrames: false },
-          files: ['src/content/hooks.js'],
+          files: ARQUIVOS_MAIN,
           world: 'MAIN',
           injectImmediately: true
         }).catch(() => {});
         await chrome.scripting.executeScript({
           target: { tabId: msg.tabId, allFrames: false },
-          files: ['src/content/bridge.js'],
+          files: ARQUIVOS_ISOLATED,
           world: 'ISOLATED',
           injectImmediately: true
         }).catch(() => {});
